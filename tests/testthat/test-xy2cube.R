@@ -11,7 +11,10 @@ test_that("xy2cube works", {
 
   tbl <- as_tibble(cube)
   expect_equal(nrow(tbl), 129 * 149)
-  expect_snapshot({set.seed(0); dplyr::sample_n(tbl, 10)})
+  expect_snapshot({
+    set.seed(0)
+    deparse::deparsec(dplyr::sample_n(tbl, 10))
+    })
   expect_snapshot(digest::digest(tbl, algo = "md5"))
 
 })

@@ -85,8 +85,8 @@ read_plt_as_raster <- function (
     rst <- raster::raster(nrow = dim(arr)[["Y"]], ncol = dim(arr)[["X"]])
     raster::values(rst) <- t(as.matrix(arr))
     if (missing(extent)) {
-      bb <- with(dt_list[[1]], c(xmin = min(X, na.rm = TRUE), xmax = max(X, na.rm = TRUE), ymin = min(Y, na.rm = TRUE), ymax = max(Y, na.rm = TRUE)))
-      extent <- with(as.list(bb), raster::extent(xmin, xmax, ymin, ymax)) # WAS: geotools::st_extent(bb)
+      XY <- attr(arr, "XY") # list(X = <unique x values>, Y = <unique y values>)
+      extent <- auto_extent(XY[["X"]], XY[["Y"]])
     }
     raster::extent(rst) <- extent
     raster::crs(rst) <- crs

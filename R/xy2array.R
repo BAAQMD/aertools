@@ -21,6 +21,8 @@ xy2array.data.table <- function (
   indices <- sapply(dims, seq_along)
   indices[["Y"]] <- rev(indices[["Y"]])
   flipped <- do.call(`[`, append(list(arr), indices))
+
+  attr(flipped, "XY") <- dims
   return(flipped)
 
 }
