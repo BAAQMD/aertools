@@ -1,7 +1,7 @@
 Package: aertools
 Type: Package
 Title: What the Package Does (Title Case)
-Version: 2021.05.19
+Version: 2021.07.27
 Author: David Holstius <dholstius@baaqmd.gov>
 Maintainer: David Holstius <dholstius@baaqmd.gov>
 Description: More about what it does (maybe more than one line)
