@@ -71,7 +71,7 @@ test_that("read_plt(paths, as = 'array', ...) yields expected snapshot", {
 
 test_that("read_plt(paths, as = 'raster', ...) yields a RasterLayer or RasterStack with correct dims and crs", {
 
-  given_crs <- sp::CRS(projargs = "+init=epsg:26910 +proj=utm +zone=10 +datum=NAD83 +units=m +no_defs +ellps=GRS80 +towgs84=0,0,0")
+  given_crs <- sp::CRS(projargs = "+init=epsg:26910 +proj=utm +zone=10 +datum=NAD83 +units=m +no_defs +ellps=GRS80")
   expected_extent <- raster::extent(549616.33, 562516.33, 4193209.66, 4208109.66)
 
   single_layer <- read_plt(
