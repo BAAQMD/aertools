@@ -8,6 +8,7 @@ read_plt(
   path,
   as = c("tbl", "tbl_cube", "array", "data.table", "raster"),
   cols = c(X = "X", Y = "Y", CONC = "AVERAGE CONC"),
+  complete = TRUE,
   ...,
   verbose = getOption("verbose", default = FALSE)
 )
@@ -17,6 +18,8 @@ read_plt(
 
 \item{as}{(character) format of result}
 
+\item{complete}{(logical) complete with `NA` for (X, Y) combinations that don't appear in the file}
+
 \item{verbose}{(logical)}
 }
 \value{
@@ -24,6 +27,9 @@ an object of type `as` (default: `tbl`)
 }
 \description{
 Import an AERMOD .PLT file as tabular data
+}
+\note{
+`complete = FALSE` only makes sense when `as` is "tbl" or "data.table".
 }
 \seealso{
 predecessor `read_AERMOD_plt.R` in West Oakland AB617 work
