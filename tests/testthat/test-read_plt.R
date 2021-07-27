@@ -69,6 +69,24 @@ test_that("read_plt(paths, as = 'array', ...) yields expected snapshot", {
 
 })
 
+test_that("read_plt(paths, as = 'array', ...) completes missing (X, Y) combination with NA", {
+
+  result <- read_plt(
+    paths[[1]],
+    as = "array",
+    cols = cols,
+    .id = "path")
+
+  expect_identical(
+    result[63, 81],
+    NA_real_)
+
+  expect_false(
+    any(is.na(result[-63, -81])))
+
+})
+
+
 test_that("read_plt(paths, as = 'raster', ...) yields a RasterLayer or RasterStack with correct dims and crs", {
 
   given_crs <- sp::CRS(projargs = "+init=epsg:26910 +proj=utm +zone=10 +datum=NAD83 +units=m +no_defs +ellps=GRS80")
