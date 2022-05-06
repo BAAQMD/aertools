@@ -30,4 +30,12 @@ test_that("read_grf(path, ...) yields expected snapshot", {
   expect_snapshot(digest::digest(result[[1]], algo = "md5"))
   expect_s3_class(result[[1]], "sf")
 
+  expect_equal(
+    nrow(result[[1]]),
+    4378)
+
+  expect_setequal(
+    names(result[[1]]),
+    c("path", "CONC", "geometry"))
+
 })
