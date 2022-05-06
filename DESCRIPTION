@@ -1,12 +1,11 @@
 Package: aertools
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 2021.07.27
+Title: Provides Tools for Reading AERMOD Output
+Version: 2022.05.06
 Author: David Holstius <dholstius@baaqmd.gov>
 Maintainer: David Holstius <dholstius@baaqmd.gov>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Description: Currently reads .PLT and .GRF files as tabular, vector, or raster data.
+License: Public
 Encoding: UTF-8
 LazyData: true
 Imports:
@@ -21,4 +20,4 @@ Imports:
 Suggests:
   testthat (>= 3.0.0)
 Config/testthat/edition: 3
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
