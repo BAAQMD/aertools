@@ -1,9 +1,9 @@
 # README
 
-This package provides one key function, `read_plt()`, that can be used to import AERMOD-generated .PLT files in various ways.
+This R package provides one key function, `read_plt()`, that can be used to import AERMOD-generated .PLT files in various ways.
 
 By default it just looks for the `X`, `Y`, and `AVERAGE CONC` columns, and abbreviates that last one as `CONC`. 
-You can use `read_plt(path, cols = c(X = "X", Y = "Y", ...))` for finer-grained control, but that's highly experimental. 
+You can use `read_plt(path, cols = c(X = "X", Y = "Y", ...))` for finer-grained control, but that's experimental and YMMV. 
 
 ## Example Usage
 
