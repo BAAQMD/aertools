@@ -1,7 +1,7 @@
 # read_grf(path, ...) yields expected snapshot
 
     Code
-      digest::digest(result, algo = "md5")
+      digest::digest(result[[1]], algo = "md5")
     Output
-      [1] "364ec982230659c80819831b380be800"
+      [1] "f0a4a2cd1276268ff2c5e617ef594d61"
 
