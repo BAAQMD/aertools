@@ -6,9 +6,10 @@
 \usage{
 read_plt(
   path,
-  as = c("tbl", "tbl_cube", "array", "data.table", "raster"),
+  as = c("tbl", "tbl_cube", "array", "data.table", "raster", "terra", "sf"),
   cols = c(X = "X", Y = "Y", CONC = "AVERAGE CONC"),
   complete = TRUE,
+  crs = NULL,
   ...,
   verbose = getOption("verbose", default = FALSE)
 )
