@@ -26,13 +26,17 @@ read_grf <- function (
   (chunk_start <- which(stringr::str_detect(grf_lines, "^\\* AERMOD")))
   (chunk_end <- c(chunk_start[-1] - 1, length(grf_lines)))
 
+  str_extract_first_match <- function (x, ...) {
+    matches <- stringr::str_match(x, ...)
+    return(matches[, 2])
+  }
+
   chunk_names <- local({
-    #pattern <- "PLOT FILE OF\\s+([A-Za-z0-9-\\s]+?) VALUES FOR SOURCE GROUP:\\s+([A-Za-z0-9]+)"
-    pattern <- "(PERIOD|1-HR) VALUES FOR SOURCE GROUP:\\s+([A-Za-z0-9]+)"
     i <- which(stringr::str_detect(grf_lines, "SOURCE GROUP"))
-    matches <- stringr::str_match(grf_lines[i], pattern)
-    sanitize <- function (x) stringr::str_remove_all(x, "[-_]")
-    stringr::str_c(sanitize(matches[, 2]), sanitize(matches[, 3]), sep = "_")
+    interval <- str_extract_first_match(grf_lines[i], "(PERIOD|1-HR) VALUES")
+    group <- str_extract_first_match(grf_lines[i], "SOURCE GROUP:\\s+([A-Za-z0-9]+)")
+    sanitize <- function (x) str_remove_all(x, "[-_]")
+    stringr::str_c(sanitize(interval), sanitize(group), sep = "_")
   })
 
   (tmpdn <- fs::path(fs::path_temp(), basename(path)))

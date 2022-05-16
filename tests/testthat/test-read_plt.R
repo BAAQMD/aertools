@@ -12,6 +12,26 @@ cols <- c(
   Y = "Y",
   CONC = "AVERAGE CONC")
 
+test_that("read_plt_dt_fread(path, ...) yields expected first and last values", {
+
+  path <- paths[[1]]
+
+  result <- read_plt_dt_fread(
+    path,
+    cols = cols,
+    .id = "path")
+
+  expect_equal(
+    head(result, 1)[["CONC"]],
+    0.114864E+01)
+
+  expect_equal(
+    tail(result, 1)[["CONC"]],
+    0.975456E+00)
+
+})
+
+
 test_that("read_plt_dt_fread(path, ...) yields expected snapshot", {
 
   path <- paths[[1]]

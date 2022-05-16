@@ -39,3 +39,26 @@ test_that("read_grf(path, ...) yields expected snapshot", {
     c("path", "CONC", "geometry"))
 
 })
+
+test_that("read_grf(path, ...) meets expectations for specific values", {
+
+  result <- read_grf(
+    path,
+    cols = cols,
+    crs = "epsg:26910",
+    as = "sf")
+
+  expect_equal(
+    head(result[["PERIOD_MAXPAK1"]][["CONC"]], 1),
+    0.44831)
+
+  expect_equal(
+    tail(result[["PERIOD_MAXPAK1"]][["CONC"]], 1),
+    0.02717)
+
+  expect_equal(
+    head(result[["PERIOD_MAXPAK2"]][["CONC"]], 1),
+    0.57690)
+
+})
+
