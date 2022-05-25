@@ -14,21 +14,21 @@ cols <- c(
 
 test_that("read_grf(path, ...) yields expected snapshot", {
 
+  aer_ids <- str_c(
+    "PERIOD_",
+    c("MAXPAK1", "MAXPAK2", "FIREPUMP"))
+
   result <- read_grf(
     path,
-    cols = cols,
-    crs = "epsg:26910",
-    as = "sf")
+    ids = aer_ids,
+    cols = cols)
 
   expect_setequal(
     names(result),
-    c("PERIOD_MAXPAK1", "PERIOD_MAXPAK2", "PERIOD_NEOTEC1", "PERIOD_NEOTEC2",
-      "PERIOD_NEOTEC3", "PERIOD_NEOTEC4", "PERIOD_OXIDIZER", "PERIOD_FIREPUMP", "PERIOD_ALL",
-      "1HR_MAXPAK1", "1HR_MAXPAK2", "1HR_NEOTEC1", "1HR_NEOTEC2",
-      "1HR_NEOTEC3", "1HR_NEOTEC4", "1HR_OXIDIZER", "1HR_FIREPUMP", "1HR_ALL"))
+    aer_ids)
 
   expect_snapshot(digest::digest(result[[1]], algo = "md5"))
-  expect_s3_class(result[[1]], "sf")
+  expect_s3_class(result[[1]], "data.frame")
 
   expect_equal(
     nrow(result[[1]]),
@@ -36,7 +36,7 @@ test_that("read_grf(path, ...) yields expected snapshot", {
 
   expect_setequal(
     names(result[[1]]),
-    c("path", "CONC", "geometry"))
+    c("path", "X", "Y", "CONC"))
 
 })
 
@@ -44,9 +44,8 @@ test_that("read_grf(path, ...) meets expectations for specific values", {
 
   result <- read_grf(
     path,
-    cols = cols,
-    crs = "epsg:26910",
-    as = "sf")
+    ids = c("PERIOD_MAXPAK1", "PERIOD_MAXPAK2"),
+    cols = cols)
 
   expect_equal(
     head(result[["PERIOD_MAXPAK1"]][["CONC"]], 1),

@@ -18,6 +18,7 @@ read_plt_vroom_fwf <- function (
       skip = 8,
       id = .id,
       show_col_types = show_col_types,
+      progress = FALSE,
       ...,
       col_positions = col_positions)
 

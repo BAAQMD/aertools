@@ -4,7 +4,12 @@
 \alias{read_grf}
 \title{read_grf}
 \usage{
-read_grf(path, ..., verbose = getOption("verbose", default = FALSE))
+read_grf(
+  path,
+  ids = NULL,
+  ...,
+  verbose = getOption("verbose", default = FALSE)
+)
 }
 \arguments{
 \item{path}{(character) ending in .GRF}
