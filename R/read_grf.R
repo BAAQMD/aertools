@@ -36,7 +36,7 @@ read_grf <- function (
 
   chunk_names <- local({
     i <- which(stringr::str_detect(grf_lines, "SOURCE GROUP"))
-    interval <- str_extract_first_match(grf_lines[i], "(PERIOD|1-HR) VALUES")
+    interval <- str_extract_first_match(grf_lines[i], "(PERIOD|ANNUAL|1ST-HIGHEST|2ND-HIGHEST|1-HR) VALUES")
     group <- str_extract_first_match(grf_lines[i], "SOURCE GROUP:\\s+([A-Za-z0-9]+)")
     sanitize <- function (x) str_remove_all(x, "[-_]")
     stringr::str_c(sanitize(interval), sanitize(group), sep = "_")
